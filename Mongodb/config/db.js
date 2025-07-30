@@ -1,15 +1,16 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/mydb');
 
-const db = mongoose.connection;
+mongoose.connect('mongodb://localhost:27017/Books');
+const db = mongoose.connection
 
-db.on('connected',(err)=>{
-    if(!err) {
-        console.log("Database connected successfully");
-    } else {
-        console.error("Database connection error:", err);
+db.once('open',(err)=>{
+    if(err){
+        console.log('Database not connected');
+        console.log(err.message)
+        return false;
     }
+    console.log("Database connected...")
 })
 
 module.exports = db;
