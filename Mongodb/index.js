@@ -8,10 +8,6 @@ app.set('view engine','ejs')
 app.use(express.urlencoded({extended:true}));
 
 
-app.get('/',(req,res)=>{
-    res.render('addBooks')
-})
-
 
 app.post('/addBooks',(req,res)=>{
     
@@ -27,6 +23,17 @@ app.post('/addBooks',(req,res)=>{
     .catch((err)=>{
         console.log(err);
         return res.redirect(req.get('Referrer')|| '/')
+    })
+})
+
+app.get('/',(req,res)=>{
+    Books.find({})
+    .then((books)=>{
+        return res.render('addBooks',{books})
+    })
+    .catch((err)=>{
+        console.log(err);
+        return res.render('addBooks',{books:[]})
     })
 })
 
