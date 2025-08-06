@@ -1,8 +1,15 @@
 const mongoose = require("mongoose");
 
 
-mongoose.connect('mongodb+srv://milanmandaviya7495:12345@cluster0.gswuxkt.mongodb.net/product')
+const db = async () => {
+    try {
+        await mongoose.connect('mongodb+srv://milanmandaviya7495:12345@cluster0.gswuxkt.mongodb.net/product')
+        console.log("Database connected successfully");
+    }
+    catch(error){
+        console.log(error.message);
+        
+    }
+}
 
-let Product = mongoose.connection
-
-module.exports = Product;
+module.exports = db;
