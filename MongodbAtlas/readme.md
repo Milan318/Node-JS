@@ -1,1 +1,0 @@
-mongodb+srv://aksharparekh401:12345@cluster0.ncwztql.mongodb.net/
